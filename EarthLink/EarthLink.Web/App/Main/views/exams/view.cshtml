@@ -1,0 +1,143 @@
+﻿<div ng-controller="app.views.exams.view as vm">
+    <h3>@L("ViewExamDetails")</h3>
+    <div class="row">
+        <br />
+        <div class="col-md-12">
+            <div class="btn-group pull-left">
+                <a ng-click="vm.viewExamResults()" class="btn btn-primary pull-left">
+                    <i class="fa fa-bar-chart"></i> @L("ViewResults")
+                </a>
+            </div>
+            <div class="text-right">
+                <div class="btn-group">
+                    <a ui-sref="exams" class="btn btn-default pull-right">
+                        <i class="fa fa-arrow-left"></i> @L("Back")
+                    </a>
+                </div>
+                <div class="btn-group" ng-show="!vm.isEditingMode">
+                    <a ui-sref="edit" class="btn btn-primary pull-right" ng-click="vm.isEditingMode = true">
+                        <i class="fa fa-edit"></i> @L("Edit")
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br />
+            </div>
+            <div class="form-group row">
+                <label for="exam-new-text" class="col-xs-12 col-form-label">@L("InvitationURL")</label>
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <input class="form-control" id="invitation" readonly ng-model="vm.data.exam.invitationUrl" type="text">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ngclipboard ngclipboard-success="vm.onCopySuccess(e)" data-clipboard-target="#invitation">
+                                <i class="fa fa-copy"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exam-new-text" class="col-xs-12 col-form-label">@L("TaskName")</label>
+                <div class="col-xs-12">
+                    <input class="form-control" ng-readonly="!vm.isEditingMode"
+                           ng-model="vm.data.exam.name" type="text"
+                           id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exam-desc" class="col-xs-12 col-form-label">@L("TaskDescription")</label>
+                <div class="col-xs-12">
+                    <text-angular ta-disabled="!vm.isEditingMode" ng-model="vm.data.exam.description"></text-angular>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-md-12">
+                        @L("TestDataHeader")
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                            <strong>
+                                @L("ID")
+                            </strong>
+                        </div>
+                        <div class="col-md-5">
+                            <strong>
+                                @L("Input")
+                            </strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>
+                                @L("ExpectedOutput")
+                            </strong>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>
+                                @L("Actions")
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+                    <div class="col-md-12" ng-repeat="test in vm.data.exam.testCases">
+                        <div class="col-md-1">
+                            {{$index + 1}}
+                        </div>
+                        <div class="col-md-5">
+                            {{test.input}}
+                        </div>
+                        <div class="col-md-4">
+                            {{test.expectedOutput}}
+                        </div>
+                        <div class="col-md-2">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-default" title="Edit" ng-disabled="!vm.isEditingMode">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-default" title="Delete" ng-disabled="!vm.isEditingMode">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-primary" title="Edit" ng-disabled="!vm.isEditingMode">
+                                <i class="fa fa-plus"></i>
+                                Add another
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-right" ng-show="vm.isEditingMode">
+            <div class="btn-group">
+                <a class="btn btn-primary pull-right" ng-click="vm.updateExam()">
+                    <i class="fa fa-save"></i> @L("Save")
+                </a>
+            </div>
+            <div class="btn-group" ng-click="vm.isEditingMode=false">
+                <a class="btn btn-default pull-right">
+                    <i class="fa fa-ban"></i> @L("Cancel")
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <br />
+        </div>
+    </div>
+
+</div>

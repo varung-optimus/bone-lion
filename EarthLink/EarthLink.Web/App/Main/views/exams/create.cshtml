@@ -1,0 +1,136 @@
+﻿<div ng-controller="app.views.exams.create as vm">
+    <h3>@L("CreateNewExam")</h3>
+    <div class="row" ng-show="!vm.isSaved">
+        <br />
+        <div class="col-md-12">
+            <div class="btn-group pull-right">
+                <a ui-sref="exams" class="btn btn-default pull-right">
+                    <i class="fa fa-arrow-left"></i> @L("Back")
+                </a>
+            </div>
+            <div class="form-group row">
+                <label for="exam-new-text" class="col-xs-12 col-form-label">Task Name</label>
+                <div class="col-xs-12">
+                    <input class="form-control" ng-model="vm.exam.name" type="text" id="example-text-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="exam-desc" class="col-xs-12 col-form-label">Task Description</label>
+                <div class="col-xs-12">
+                    <text-angular ng-model="vm.exam.description"></text-angular>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-md-6">
+                        Add Test Data & Results
+                    </div>
+                    <div class="col-md-6 pull-right text-danger">
+                        <strong>
+                            Note:
+                        </strong>
+                        <span>
+                            This contains the test cases and corresponding expected results.
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <br />
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-1">
+                            <strong>
+                                ID
+                            </strong>
+                        </div>
+                        <div class="col-md-5">
+                            <strong>
+                                Input
+                            </strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>
+                                Expected Output
+                            </strong>
+                        </div>
+                        <div class="col-md-2">
+                            <strong>
+                                Actions
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <hr />
+                    </div>
+                    <div class="col-md-12" ng-repeat="test in vm.exam.testCases">
+                        <div class="col-md-1">
+                            {{test.id}}
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" ng-model="test.input"/>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" ng-model="test.expectedOutput"/>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-default" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-primary" title="Edit">
+                                <i class="fa fa-plus"></i>
+                                Add another
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-right">
+            <div class="btn-group">
+                <a class="btn btn-primary pull-right" ng-click="vm.createExam()">
+                    <i class="fa fa-save"></i> @L("Save")
+                </a>
+            </div>
+            <div class="btn-group">
+                <a ui-sref="exams" class="btn btn-default pull-right">
+                    <i class="fa fa-ban"></i> @L("Cancel")
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <br />
+        </div>
+    </div>
+
+    <div class="row" ng-show="vm.isSaved">
+        <br />
+        <div class="col-md-12">
+            <div class="btn-group pull-right">
+                <a ui-sref="exams" class="btn btn-default pull-right">
+                    <i class="fa fa-arrow-left"></i> @L("Back")
+                </a>
+            </div>
+            <br />
+            <br />
+
+        </div>
+        <div class="col-md-12">
+            <br />
+        </div>
+        <div class="col-md-12 alert alert-success" role="alert">
+            Awesome! Exam is created successfully
+        </div>
+    </div>
+</div>

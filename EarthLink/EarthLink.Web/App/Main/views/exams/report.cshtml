@@ -1,0 +1,121 @@
+﻿<div ng-controller="app.views.exams.report as vm">
+    <h3 class="col-md-6">@L("Report")</h3>
+
+    <div class="col-md-6">
+        <div class="text-right">
+            <div class="btn-group">
+                <a ui-sref="results" class="btn btn-default pull-right">
+                    <i class="fa fa-arrow-left"></i> @L("Back")
+                </a>
+            </div>
+            <div class="btn-group">
+                <a ng-click="vm.export()" class="btn btn-primary pull-right">
+                    <i class="fa fa-file-pdf-o"></i> @L("ExportToPdf")
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="exportthis">
+        <div class="col-md-12">
+            <br />
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-md-6">
+                        <strong>@L("Summary")</strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button ng-class="vm.report.isPassed ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'" type="button">
+                            @L("OverallScore")
+                            <span class="badge">{{vm.report.overall}}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <strong>@L("Name")</strong>
+                        <span class="pull-right">
+                            {{vm.report.pName}}
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>@L("Email")</strong>
+                        <span class="pull-right">
+                            {{vm.report.pEmail}}
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>@L("DateOfSubmission")</strong>
+                        <span class="pull-right">
+                            {{vm.report.dos}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-md-6">
+                        <strong>@L("Details")</strong>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 clearfix" ng-repeat="task in vm.report.tasks">
+                        <div class="col-md-12">
+                            <span class="text-primary pull-right">
+                                <button class="btn btn-sm btn-primary" type="button">
+                                    Score
+                                    <span class="badge">{{task.score}}</span>
+                                </button>
+                            </span>
+
+                            <h4>
+                                @L("SolutionFor")
+                                <span class="text-primary">{{task.name}} </span>
+                                <hr />
+
+                            </h4>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="text-warning">
+                                <pre>{{task.solution}}</pre>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h4>
+                                @L("TestCases")
+                            </h4>
+                            <hr />
+
+                            <table class="table text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">@L("TestCaseId")</th>
+                                        <th class="text-center">@L("Status")</th>
+                                        <th class="text-center">@L("Marks")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="test in task.tests">
+                                        <td>{{test.id}}</td>
+                                        <td>
+                                            <span ng-class="test.status=='pass'? 'btn btn-xs btn-success u-test-status' : 'btn btn-xs u-test-status btn-danger'">
+                                                {{test.status}}
+                                            </span>
+                                        </td>
+                                        <td>{{test.marks}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

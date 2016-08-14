@@ -1,0 +1,19 @@
+﻿@using Abp.Authorization.Users
+<div>
+    <form name="userCreateForm" role="form" novalidate class="form-validation">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span>@L("ConfirmDeleteExam")</span>
+            </h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                You are about to delete <strong>{{vm.exam.name}}</strong> exam!
+            </p>            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" ng-click="vm.deleteExam()">@L("Confirm")</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.cancel()">@L("Cancel")</button>
+        </div>
+    </form>
+</div>

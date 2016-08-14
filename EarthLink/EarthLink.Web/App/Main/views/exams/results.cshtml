@@ -1,0 +1,44 @@
+﻿<div ng-controller="app.views.exams.results as vm">
+    <h3>@L("ExamsResults")</h3>
+    <div class="row">
+        <div class="col-md-12 pull-left text-danger">
+            <strong>
+                Note:
+            </strong>
+            <span>
+                Click on one of the below record to view exam results in details
+            </span>
+            <br /><br />
+        </div>
+        <div class="col-md-12">
+            <strong>Filter Results:</strong>
+            <span>
+                <input type="text" placeholder="Enter text to filter records..." ng-model="vm.results.search" class="form-control form-inline" />
+            </span>
+            <hr />
+
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@L("ResultId")</th>
+                        <th>@L("ParticipantName")</th>
+                        <th>@L("ParticipantEmail")</th>
+                        <th>@L("ParticipantScore")</th>
+                        <th>@L("DateOfSubmission")</th>
+                    </tr>
+                </thead>
+                <tbody>      
+                    <tr class="exam-table" ng-repeat="result in vm.results | filter: vm.results.search" ng-click="vm.viewExamDetails(exam)">
+                        <td>{{result.id}}</td>
+                        <td>{{result.pName}}</td>
+                        <td>{{result.pEmail}}</td>
+                        <td>{{result.score}}</td>
+                        <td>{{result.dos}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
